@@ -1,0 +1,66 @@
+
+body {
+    background-image: url(https://static.havenly.com/product/production/md5_731bd961f87b4c8018b6626b247a2ad5.jpeg);}
+
+h1 {
+    font-family: 'Satisfy', cursive;
+}
+
+h2 {
+    font-family: 'Satisfy', cursive;
+}
+h4 {
+    font-family: 'Montserrat', sans-serif;
+}
+h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+p {
+    font-family: 'Montserrat', sans-serif;
+
+}
+nav {
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: 3.5em;
+    width: 100%;
+    background-color: #2B4162;
+}
+.nav-item { background-color:#2B4162;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    text-align:center;
+    color:#ffffff;
+    font-size: x-large;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+footer {background-color: #D36135;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    height: 3.5em;
+    width: 100%
+}
+.footer-item {font-family: 'Montserrat', sans-serif;
+    background-color: #D36135;
+    text-decoration: none;
+    text-align: center;
+    color:#ffffff;
+    font-size: x-large;
+    padding-left: 10px;
+    padding-right: 10px; }
+
+
+
+
+
+
+
