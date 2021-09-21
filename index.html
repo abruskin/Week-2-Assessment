@@ -2,7 +2,8 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <title>Highland Rim Realty</title>
+    <title>Tennessee Valley Realty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="css/default.css">
@@ -13,35 +14,148 @@
 </head>
 
 
+<script>
+
+    //this prevents the animations below from running before the page has fully loaded
+    $(document).ready(function() {
+        //this function is my image fade, it fades the logo
+        $("#logo").click(function () {
+            $("#logo").fadeTo("slow", 0.5);
+        });
+
+        //this function is my animation; on mouseover, the star moves
+        $("#star").mouseover(function () {
+            var star = $("#star");
+            star.animate({
+                right: '250px'
+            });
+        });
+    })
+//this function pulls the most expensive listing from the JSON array and features it on the home page. The display
+    //follows the same format as the listing page and is explained there
+function myfunction() {
+    const url = "http://3.21.225.172:8080/api/"
+    $.getJSON(url + "realestate/all")
+        .done(function (data) {
+            $.each(data, function () {
+                var highestPrice = "0";
+                var highestHome = "";
+                for (let i = 0; i < data.length; i++) {
+                        if (highestPrice > data[i].price) {
+                            highestPrice = highestPrice;
+                        } else {
+                            highestPrice = data[i].price;
+                            highestHome = data[i];
+                            var html =
+                                "<img class=card-img-top src='" + url + highestHome.imageurl + "'/></img>" +
+                                "<h4 class='card-title'>" + "Listing ID: " + highestHome.id + "</h4>" +
+                                 "<div class='card-body'><p class='card-text' >" + "Price: $" + highestHome.price + "</p>" +
+                                "<p class='card-text' >" + "Bedrooms: " + highestHome.beds + "</p>" +
+                                "<p class='card-text' >" + "Bathrooms: " + highestHome.baths + "</p></div>";
+                            document.getElementById("featured").innerHTML=html;
+
+
+                        }
+
+                }
+            })
+        })
+
+}
+//the below command pulls that featured listing once the page has loaded
+window.onload = myfunction;
+
+
+
+
+
+
+</script>
+
+//this is my nav bar
 <nav class="navbar-expand-sm p-0">
-
-    <a class="nav-item active" href="#"> Home </a>
-    <a class="nav-item" href="#"> About Us </a>
-    <a class="nav-item" href="#"> Listings </a>
-
+    <a class="nav-item active" href="index.html"> Home </a>
+    <a class="nav-item" href="About%20Us.html"> About Us </a>
+    <a class="nav-item" href="Listings.html"> Listings </a>
 </nav>
 <body>
 
-
+//this div contains the logo image, the header text, and a paragraph promoting the business. It is responsive.
 <div class="container">
     <div class="row mt-3">
         <div class="col">
-            <img src="https://64.media.tumblr.com/4facefd7a9f5fb7f8408624d4ad77273/18cf3837f91adfd5-20/s500x750/a4c1396fef76e0b0b410518dcbe0de740020d824.png"
+            <img id="logo" class="img-fluid" src="https://64.media.tumblr.com/4facefd7a9f5fb7f8408624d4ad77273/18cf3837f91adfd5-20/s500x750/a4c1396fef76e0b0b410518dcbe0de740020d824.png"
                  alt="Tennessee Valley Realty logo: white outline on army green background, a river flowing from mountains
 with pine trees on either side" class="max-width: 75%"> </div>
         <div class="col pt-3">
-            <h2> Your local realtors since 1985</h2>
+            <h1> Your local realtors since 1985</h1>
             <p> We are your local, full-service realtors. Not only will we sell your current home, our in-house
                 mortgage broker will present your best financing options for your personal situation, to put you in the
                 best house that you can afford. Interest rates are at historic lows, this is a great time to buy!
-                The market is hot right now, and inventory is moving quickly. We work tireless to put you in the home of your
-                dreams--we don't sleep so that you can sleep soundly, knowing that we're taking good care of you. </p>
-
+                The market is hot right now, and inventory is moving quickly. We work tirelessly to put you in the home of your
+                dreams--we don't sleep so that you sleep soundly, knowing that we're taking good care of you. </p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Golden_star.svg/1200px-Golden_star.svg.png"
+     alt="a gold star" id="star"
+     style="position:absolute; height:100px">
         </div>
     </div>
 </div>
+
+//this empty div is used as a spacer
+<div style=height:100px> </div>
+
+//below is a carousel of inspirational photos, encouraging potential home buyers to envision their dream home.
+//The images will slide automatically, or the navigation arrows can be used.
+<h1 style="text-align: center"> When you imagine your dream home, what do you see? </h1>
+<div id="dreamHome" class="carousel slide" data-ride="carousel" style="align-content: center" >
+    <ul class="carousel-indicators">
+        <li data-target="#dreamHome" data-slide-to="0" class="active"> </li>
+        <li data-target="#dreamHome" data-slide-to="1"> </li>
+        <li data-target="#dreamHome" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.squarespace-cdn.com/content/v1/56e0897622482e207bc69193/1526430688406-2SV6ELH7UZYPCH46FE8Y/Modern-Farmhouse_kitchen-1.jpg?format=1000w"
+                 alt="a new kitchen with white cabinets, white metro tile backsplash, and black stools at a center island"
+            width="1100" height="500">
+        </div>
+        <div class="carousel-item">
+            <img src="https://media.vrbo.com/lodging/58000000/57520000/57515400/57515328/b47ec79e.c10.jpg"
+                 alt="an elegant swimming pool with stone surround and a hot tub" width="1100" height="500">
+        </div>
+        <div class="carousel-item">
+            <img src="https://stylebyemilyhenderson.com/wp-content/uploads/2020/02/Emily-Henderson-Moutain-House-Living-Room-LoRes1.jpg"
+                 alt="a living room with white walls, white furniture, and pale wood lofted ceilings with a fireplace in the corner"
+                 width="1100" height="500">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#dreamHome" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#dreamHome" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+//this empty div is used as a spacer
+<div style=height:100px> </div>
+
+//this is where the featured listing is printed
+<div class="container-fluid" style="align-content: center">
+    <h1> Featured Listing </h1>
+<div class="card" style="align-content: center">
+    <div id="featured" style="align-content: center">
+    </div>
+</div>
+</div>
+
+//this empty div is used as a spacer
+<div style=height:100px> </div>
+
+//this is my footer
 <footer>
-    <p class="footer-item"> 555-555-5555 | 57 W Main St Colliersville, TN | info@tennesseevalleyrealty.com </p>
+    <p class="footer-item"> 555-555-5555 | 357 Market Blvd Collierville, TN | info@tennesseevalleyrealty.com </p>
 </footer>
 
 </body>

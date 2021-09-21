@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Listings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="css/default.css">
@@ -12,79 +13,103 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <style>
-    table td{padding: 4px; margin:0}
-</style>
 
+</style>
+//this is my nav bar
 <nav class="navbar-expand-sm p-0">
 
-    <a class="nav-item" href="#"> Home </a>
-    <a class="nav-item active" href="#"> About Us </a>
-    <a class="nav-item active" href="#"> Listings </a>
+    <a class="nav-item" href="index.html"> Home </a>
+    <a class="nav-item" href="About%20Us.html"> About Us </a>
+    <a class="nav-item active" href="Listings.html"> Listings </a>
 
 </nav>
 
 <body>
-<div>
-    <!-- <form>
-    label for = "num_rec">Number of records:</label>
-    input type="text" id="num_rec"> <br>
-    input type="button" value="Update" onclick="update_data()"
+
+//this div contains a form to enter search parameters
+<div class="height:20px"></div>
+<div style="align-content: center">
+    <form id="Search">
+        <label for="minPrice"> Minimum Price:</label>
+        <input type="number" value="" id="minPrice">
+        <label for="maxPrice"> Maximum Price:</label>
+        <input type="number" value="" id="maxPrice">
+        <button type="button" id="UpdateResults" value="Update" class="update" > Update Results</button>
+
     </form>
-    -->
-    <table id="records" class="border-color: #000000">
-        <tr>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Year Built </td>
-            <td>New Construction</td>
-            <td>Square Feet </td>
-            <td>Bathrooms </td>
-            <td>Bedrooms </td>
-            <td>Street Address </td>
-            <td>City </td>
-            <td>State </td>
-            <td>Zip </td>
-            <td>Phone </td>
-            <td>Price </td>
-            <td>Image </td>
-        </tr></table>
 </div>
 
-<script>
-    function update_data() {
-        //const record_count=
-        parseInt(document.getElementById("num_rec").value);
-        const url = "http://3.21.225.172:8080/api/realestate/all";
+//this div will display the search results.
+<div class="card-columns" id="records">
 
-        $.getJSON(url+ "realestate/getByRowAmount?rows=5")
-            .done(function(data) {
-                $.each(data, function(i, item) {
-                    var html=
-                        "<td>" + item.fname + "</td>" +
-                        "<td>" + item.lname + "</td>" +
-                        "<td>" + item.yrblt + "</td>" +
-                        "<td>" + item.isnew + "</td>" +
-                        "<td>" + item.sqft + "</td>" +
-                        "<td>" + item.baths + "</td>" +
-                        "<td>" + item.beds + "</td>" +
-                        "<td>" + item.street + "</td>" +
-                        "<td>" + item.city + "</td>" +
-                        "<td>" + item.state + "</td>" +
-                        "<td>" + item.zip + "</td>" +
-                        "<td>" + item.state + "</td>" +
-                        "<td>" + item.phone + "</td>" +
-                        "<td>" + item.price + "</td>" +
-                        "<td>" <img ;width=100; height=100; src="" + url +
-                        item.imageurl + "'/></td>" ;
-                    $("<tr/>").html(html).appendTo("#records");
-                })
-            })
+</div>
+<p id="demo"></p>
+<script>
+    //this function runs on page load and will pull the first 12 listings from the JSON array.
+   function update_data() {
+        const url = "http://3.21.225.172:8080/api/"
+
+        $.getJSON(url + "realestate/getByRowAmount?rows=12")
+            .done(function (data) {
+                $.each(data, function (i, item) {
+
+                    var html =
+//I decided that not all of the information needed to be on this page, and chose only the most pertinent elements.
+                        "<img class=card-img-top src='" + url + item.imageurl + "'/></img>" +
+                        "<div class='card-body'>" + "<h4 class=card-title>" + "Listing ID: " + item.id + "</h4>" +
+                        "<p class=card-text >" + "Price: $" + item.price + "</p>" +
+                        "<p class=card-text >" + "Bedrooms: " + item.beds + "</p>" +
+                        "<p class=card-text >" + "Bathrooms: " + item.baths + "</p>" +
+                        //this button makes the whole card into a link pointing to that listings detail page, which will
+                        //generate using AJAX in much the same way as these other searches function
+                        "<a href='detail.html?" +item.id +"' class='btn btn-secondary stretched-link'>"+ "See More" +"</a></div>";
+                    $("<div class='card'/>").html(html).appendTo("#records");
+
+                });
+            });
     }
+//this is the trigger to run the function described above; I've left it at the page load default
     update_data();
-</script>
+
+
+   function search() {
+           const url = "http://3.21.225.172:8080/api/"
+           var minPrice = parseInt(document.getElementById("minPrice").value)
+           var maxPrice = parseInt(document.getElementById("maxPrice").value);
+
+           //the below line will run alongside the search query, it clears previous records
+       $("#records").html("");
+
+       //the below function searches the JSON array using the price range as a filter and returns that information in
+       //in the same format as above
+           $.getJSON(url + "realestate/all")
+               .done(function (data) {
+                   $.each(data, function (i, item) {
+                       if ((item.price >= minPrice) && (item.price <= maxPrice)) {
+                           var html =
+
+                               "<img class=card-img-top src='" + url + item.imageurl + "'/></img>" +
+                               "<div class='card-body'>" + "<h4 class=card-title>" + "Listing ID: " + item.id + "</h4>" +
+                               "<p class=card-text >" + "Price: $" + item.price + "</p>" +
+                               "<p class=card-text >" + "Bedrooms: " + item.beds + "</p>" +
+                               "<p class=card-text >" + "Bathrooms: " + item.baths + "</p>" +
+                       "<a href='detail.html?" +item.id +"' class='btn stretched-link'>"+ "See More" +"</a></div>";
+                           $("<div class='card'/>").html(html).appendTo("#records");
+                       }
+                       else document.getElementById("demo").innerHTML ="No matching listings";
+                   })
+               })
+       }
+var UpdateResults=document.getElementById("UpdateResults")
+
+//this is the trigger to run the search function on the button click
+   UpdateResults.addEventListener('click', search, false);
+
+    </script>
 </body>
+//this is my footer
 <footer>
-    <p class="footer-item"> 555-555-5555 | 57 W Main St Colliersville, TN | info@tennesseevalleyrealty.com </p>
+    <p class="footer-item"> 555-555-5555 | 357 Market Blvd Collierville, TN | info@tennesseevalleyrealty.com </p>
 </footer>
 </html>
 

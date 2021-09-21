@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing Detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<script>
+    //this function is a variation of the previous functions
+    function detail() {
+        const url = "http://3.21.225.172:8080/api/"
+        $.getJSON(url + "realestate/all")
+                .done(function (data) {
+                $.each(data, function (i, item) {
+                    //in the next two lines, it picks out the listing id from the page URL
+                    let string = window.location.search;
+                    let house = (string.slice(1));
+                        //now, we compare the listing id pulled from the page URL to the JSON array and print only that
+                    //data. Now that we're on the detail page, it is pulling all available data for the listing.
+                         if (house == item.id) {
+
+                             var html =
+
+                                 "<img class=card-img-top src='" + url + item.imageurl + "'/></img>" +
+                                 "<div class='card-body'>" + "<h4 class=card-title>" + "Listing ID: " + item.id + "</h4>" +
+                                 "<p class=card-text >" + "Price: $" + item.price + "</p>" +
+                                 "<p class=card-text >" + "Bedrooms: " + item.beds + "</p>" +
+                                 "<p class=card-text >" + "Bathrooms: " + item.baths + "</p>" +
+                                 "<p class=card-text >" + "Year Built: " + item.yrblt + "</p>" +
+                                 "<p class=card-text >" + "New Construction: " + item.new + "</p>" +
+                                 "<p class=card-text >" + "Square Footage: " + item.sqft + "</p>" +
+                                 "<p class=card-text >" + "Listing Agency: " + item.listing + "</p>" +
+                                 "<p class=card-text >" + "Listing Agent: " + item.fname + " " +item.lname +"</p>" +
+                                 "<p class=card-text >" + "Address: " + item.street + " " + item.city +" " + item.state + " " +item.zip +"</p>" +
+                                  "</div>";
+                         $("<div class='card'/>").html(html).appendTo("#detail");
+                         console.log(html)}
+                    }
+            );
+    })
+    }
+    detail();
+</script>
+<body>
+//this is my nav bar
+<nav class="navbar-expand-sm p-0">
+
+    <a class="nav-item" href="index.html"> Home </a>
+    <a class="nav-item" href="About%20Us.html"> About Us </a>
+    <a class="nav-item" href="Listings.html"> Listings </a>
+
+</nav>
+
+
+
+//this empty div is used as a spacer
+<div style=height:100px> </div>
+
+//this is where the listing and its details are printed
+<div class="container-fluid" style="align-content: center">
+       <div class="card" style="align-content: center">
+        <div id="detail" style="align-content: center">
+        </div>
+    </div>
+</div>
+
+//this empty div is used as a spacer
+<div style=height:100px> </div>
+
+//this is my footer
+<footer>
+    <p class="footer-item"> 555-555-5555 | 357 Market Blvd Collierville, TN | info@tennesseevalleyrealty.com </p>
+</footer>
+</body>
+</html>
