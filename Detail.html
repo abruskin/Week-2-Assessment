@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <script>
-    //this function is a variation of the previous functions
+    <!--this function is a variation of the previous functions-->
     function detail() {
         const url = "http://3.21.225.172:8080/api/"
         $.getJSON(url + "realestate/all")
@@ -28,8 +28,8 @@
 
                              var html =
 
-                                 "<img class=card-img-top src='" + url + item.imageurl + "'/></img>" +
-                                 "<div class='card-body'>" + "<h4 class=card-title>" + "Listing ID: " + item.id + "</h4>" +
+                                 "<img  src='" + url + item.imageurl + "'/></img>" +
+                                 "<h4 class=card-title>" + "Listing ID: " + item.id + "</h4>" +
                                  "<p class=card-text >" + "Price: $" + item.price + "</p>" +
                                  "<p class=card-text >" + "Bedrooms: " + item.beds + "</p>" +
                                  "<p class=card-text >" + "Bathrooms: " + item.baths + "</p>" +
@@ -38,8 +38,8 @@
                                  "<p class=card-text >" + "Square Footage: " + item.sqft + "</p>" +
                                  "<p class=card-text >" + "Listing Agency: " + item.listing + "</p>" +
                                  "<p class=card-text >" + "Listing Agent: " + item.fname + " " +item.lname +"</p>" +
-                                 "<p class=card-text >" + "Address: " + item.street + " " + item.city +" " + item.state + " " +item.zip +"</p>" +
-                                  "</div>";
+                                 "<p class=card-text >" + "Address: " + item.street + " " + item.city +" " + item.state + " " +item.zip +"</p>"
+                                  ;
                          $("<div class='card'/>").html(html).appendTo("#detail");
                          console.log(html)}
                     }
@@ -49,7 +49,7 @@
     detail();
 </script>
 <body>
-//this is my nav bar
+<!--this is my nav bar-->
 <nav class="navbar-expand-sm p-0">
 
     <a class="nav-item" href="index.html"> Home </a>
@@ -60,10 +60,10 @@
 
 
 
-//this empty div is used as a spacer
+<!--this empty div is used as a spacer-->
 <div style=height:100px> </div>
 
-//this is where the listing and its details are printed
+<!--this is where the listing and its details are printed-->
 <div class="container-fluid" style="align-content: center">
        <div class="card" style="align-content: center">
         <div id="detail" style="align-content: center">
@@ -71,10 +71,10 @@
     </div>
 </div>
 
-//this empty div is used as a spacer
+<!--this empty div is used as a spacer-->
 <div style=height:100px> </div>
 
-//this is my footer
+<!--this is my footer-->
 <footer>
     <p class="footer-item"> 555-555-5555 | 357 Market Blvd Collierville, TN | info@tennesseevalleyrealty.com </p>
 </footer>
