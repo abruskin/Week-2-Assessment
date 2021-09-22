@@ -51,7 +51,8 @@ function myfunction() {
                                 "<h4 class='card-title'>" + "Listing ID: " + highestHome.id + "</h4>" +
                                  "<div class='card-body'><p class='card-text' >" + "Price: $" + highestHome.price + "</p>" +
                                 "<p class='card-text' >" + "Bedrooms: " + highestHome.beds + "</p>" +
-                                "<p class='card-text' >" + "Bathrooms: " + highestHome.baths + "</p></div>";
+                                "<p class='card-text' >" + "Bathrooms: " + highestHome.baths + "</p>" +
+                                "<a href='detail.html?" +item.id +"' class='btn btn-secondary stretched-link'>"+ "See More" + "</div>";
                             document.getElementById("featured").innerHTML=html;
 
 
@@ -80,7 +81,7 @@ window.onload = myfunction;
 </nav>
 <body>
 
-//this div contains the logo image, the header text, and a paragraph promoting the business. It is responsive.
+<!--this div contains the logo image, the header text, and a paragraph promoting the business. It is responsive.-->
 <div class="container">
     <div class="row mt-3">
         <div class="col">
@@ -104,8 +105,8 @@ with pine trees on either side" class="max-width: 75%"> </div>
 <!--this empty div is used as a spacer-->
 <div style=height:100px> </div>
 
-//below is a carousel of inspirational photos, encouraging potential home buyers to envision their dream home.
-//The images will slide automatically, or the navigation arrows can be used.
+<!--below is a carousel of inspirational photos, encouraging potential home buyers to envision their dream home.
+The images will slide automatically, or the navigation arrows can be used.-->
 <h1 style="text-align: center"> When you imagine your dream home, what do you see? </h1>
 <div id="dreamHome" class="carousel slide" data-ride="carousel" style="align-content: center" >
     <ul class="carousel-indicators">
